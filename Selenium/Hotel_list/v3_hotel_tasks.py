@@ -18,15 +18,15 @@ hotels_list = driver.find_element(By.XPATH, '//button[text()=" Megnézem a telje
 hotels_list.click()
 wait = WebDriverWait(driver, 10)
 checkboxes = wait.until(EC.presence_of_all_elements_located((By.XPATH, "//div[@class='form-group']//input[@type='checkbox']")))
-
+# Click all the available checkboxes with a for loop.
 for checkbox in checkboxes:
     if not checkbox.is_selected():
-        checkbox.click()
+        checkbox.click() # If the checkbox is not selected on this iteration, click on it.
 
-if len(checkboxes) == 10:
-    print('All of the checkboxes are checked.')
+if len(checkboxes) == 10: # Check the length of the list of the selected checkboxes.
+    print('All of the checkboxes are checked.') # If the list has 10 element, that means all checkboxes are checked.
 else:
-    print('One or more checkbox is not selected.')
+    print('One or more checkbox is not selected.') # If one checkbox was not selected, raise an Assertion Error, and break the test.
     raise AssertionError('Checkbox error')
 
 filter_reset = driver.find_element(By.XPATH, '//span[@id="redstar"]')
@@ -34,7 +34,7 @@ filter_reset.click()
 time.sleep(1)
 
 all_selected = all(checkbox.is_selected() for checkbox in checkboxes)
-
+# Check the filter reset button.
 if all_selected:
     print('The filter reset is not working properly.')
     raise AssertionError('Filter reset error')
@@ -61,7 +61,7 @@ password.send_keys('AutoTest')
 
 login_btn = driver.find_element(By.XPATH, '//button[text()="Belépés "]')
 login_btn.click()
-
+# Use hardcoded keys for log in like User, and check the login was successful. Raise Assertio Error if the login was not success.
 try:
 
     logout = WebDriverWait(driver, 10).until(
