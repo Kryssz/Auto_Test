@@ -1,5 +1,8 @@
+import os
 import time
+import mysql.connector
 from selenium import webdriver
+from dotenv import load_dotenv
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -18,6 +21,17 @@ TESTDATA = {
     'E-mail' : None,
     'Jelszó' : 'Auto_test',
 }
+
+load_dotenv()
+
+db_config = {
+    'host': os.getenv('DB_HOST'),
+    'port': int(os.getenv('DB_PORT', 3306)),
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD'),
+    'database': os.getenv('DB_NAME')
+}
+
 
 class TestHotelRegistration(object):
     def setup_method(self):
@@ -39,7 +53,7 @@ class TestHotelRegistration(object):
         temp_email = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID, 'email_id'))).text # Get the random generated temporary e-mail address.
         TESTDATA['E-mail'] = f'{temp_email}' # Push the temporary e-mail address as the value of the 'E-mail' key in TESTDATA dictionary.
         self.driver.switch_to.new_window() # Open a new tab in Chrome webdriver.
-        self.do_hotel_v3_registration() # Start the 'hotel_v3_registration' steppes.
+        self.do_hotel_v3_registration() # Start the 'hotel_v3_registration' steps.
         self.driver.switch_to.window(e_mail_window) # Switch back to the e-mail tab, after the registration process done.
         WebDriverWait(self.driver, 60).until(EC.presence_of_element_located((By.XPATH, '//div[text()="hotel.team.five@gmail.com"]'))).click() # Wait, until the confirmation e-mail arrives.
         reg_link = self.driver.find_element(By.XPATH, '//iframe[@class="w-full flex flex-grow px-5"]')
@@ -50,9 +64,9 @@ class TestHotelRegistration(object):
         registration_confirmation_window = self.driver.window_handles[2]
         self.driver.switch_to.window(registration_confirmation_window)
         time.sleep(.1)
-        self.do_hotel_registration_confirmation() #Start the 'hotel_registration_confirmation' steppes.
+        self.do_hotel_registration_confirmation() #Start the 'hotel_registration_confirmation' steps.
 
-        # The registration steppes.
+        # The registration steps.
     def do_hotel_v3_registration(self):
         self.driver.get(URLS['hotel_v3_url'])
         registration = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.XPATH, '//div//a[@class="nav-link dropdown-toggle"]')))
@@ -78,7 +92,7 @@ class TestHotelRegistration(object):
         save_button = self.driver.find_element(By.XPATH, '//button[@class="btn btn-success ng-star-inserted"]')
         save_button.click()
 
-        # The registration confirmation steppes.
+        # The registration confirmation steps.
     def do_hotel_registration_confirmation(self):
         self.driver.get(URLS['reglink_url']) # Use the confirmation link from the e-mail.
         email_field = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, 'email')))
@@ -101,6 +115,21 @@ class TestHotelRegistration(object):
         assert profile_firstname_field == TESTDATA['Vezetéknév']
         assert profile_second_name_field == TESTDATA['Utónév']
         assert profile_address_field == f' {TESTDATA['Cím']}'
+
+        # Connection to database, to check the registration directly from the database.
+    def test_database_check(self):
+        connection = mysql.connector.connect(**db_config) # Connection configurations. The connection data saved in .env file.
+        assert connection.is_connected(), 'Connection error' # Checking the connection is created, before the query send.
+
+        db_query = f"SELECT * FROM hotel.account WHERE username = '{TESTDATA["E-mail"]}';" # Use the generated e-mail address.
+
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute(db_query)
+
+        line = cursor.fetchall()
+
+        assert line # Checking the response from the database. If the list is not empty, the registration was success.
+
 
 
 
