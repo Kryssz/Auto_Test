@@ -76,7 +76,7 @@ class TestHotelRegistration(object):
         time.sleep(.1) # Need to slow down the code, so that all data is in the right place.
         firstname_field = self.driver.find_element(By.ID, 'firstname')
         firstname_field.send_keys(TESTDATA['Vezetéknév'])
-        time.sleep(.1)
+        time.sleep(.1) # It will be more elegant to solve it with WebDriverWait. Maybe next time, I will use it.
         lastname_field = self.driver.find_element(By.ID, 'lastname')
         lastname_field.send_keys(TESTDATA['Utónév'])
         time.sleep(.1)
