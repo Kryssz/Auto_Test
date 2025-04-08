@@ -36,8 +36,6 @@ class TestEmail(object):
         test_data = 'teszt@elek.hu'
         WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, 'email'))).send_keys(test_data)
         self.driver.find_element(By.ID, 'submit').click()
-        try:
-            self.driver.find_element(By.XPATH, '//div[@class="validation-error"]')
-            assert False, "Validation error appeared when it shouldn't have."
-        except NoSuchElementException:
-            pass
+
+        elements = self.driver.find_elements(By.XPATH, '//div[@class="validation-error"]')
+        assert len(elements) == 0, "Validation error appeared when it shouldn't have."
