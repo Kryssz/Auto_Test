@@ -16,7 +16,7 @@ Push Submit button
 Verify error message is displayed
 Verify error message text is Your username is invalid!
 
-Test case 3: Negative password test
+Test case 3: Negative password testtest_form_validation.py
 Open page
 Type username student into Username field
 Type password incorrectPassword into Password field
