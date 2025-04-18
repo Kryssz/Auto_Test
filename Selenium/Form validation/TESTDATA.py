@@ -9,3 +9,15 @@ TESTDATA = {
 'Card_number': '4111111111111111',
 'CVV': '123'
 }
+
+TESTDATA_UNHAPPY = {
+'E-Mail': 'test@',
+'Password': 'test',
+'Confirm': 'password',
+'Customer_number': 'test',
+'Dealer_number': 'test',
+'Date': 'test',
+'Random_text': '',
+'Card_number': 'test',
+'CVV': 'test'
+}
