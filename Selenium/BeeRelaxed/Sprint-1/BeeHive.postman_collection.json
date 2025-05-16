@@ -1,0 +1,864 @@
+{
+	"info": {
+		"_postman_id": "c21c9b50-3612-4ec8-b27d-49d57d450bd7",
+		"name": "BeeHive",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43291494"
+	},
+	"item": [
+		{
+			"name": "New beehive",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "f.berti84@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Beehive  Hotel Check\",\r\n    \"zipCode\": 1272,\r\n    \"city\": \"Budapest\",\r\n    \"address\": \"Méhecske utca 7.\",\r\n    \"description\": \"Budapest, Budapest, te csodááás!\",\r\n    \"lat\": 47.47920,\r\n    \"lon\": 19.29036,\r\n    \"images\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/beehives",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"beehives"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All beehives",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "f.berti84@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/beehives",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"beehives"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "One beehive (Details)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "bertiteszt@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/api/beehives/{{HiveID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"beehives",
+						"{{HiveID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "File upload to beehive",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "f.berti84@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Berti/Desktop/letöltés.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/beehives/picture/Beehive  Hotel Check",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"beehives",
+						"picture",
+						"Beehive  Hotel Check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New reservation",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "f.berti84@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"startDate\": \"2025-11-10T10:15:30\",\r\n  \"endDate\": \"2025-11-12T10:15:30\",\r\n  \"roomId\": 68\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/reservations",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"reservations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My reservations",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "bertiteszt@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/reservations/byUser",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"reservations",
+						"byUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reservation info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "f.berti84@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/reservations/{{ReservationID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"reservations",
+						"{{ReservationID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Free room info",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "bertiteszt@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"startDate\": \"2025-10-01T10:15:30\",\r\n  \"endDate\": \"2025-10-30T10:15:30\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/reservations/availableRooms/{{HiveID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"reservations",
+						"availableRooms",
+						"{{HiveID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reservations for a specific room",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "bertiteszt@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/reservations/byRoom/{{RoomID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"reservations",
+						"byRoom",
+						"{{RoomID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create room (for own beehive)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "f.berti84@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Postman Room 2\",\r\n  \"numberOfBeds\": 5,\r\n  \"pricePerNight\": 8000,\r\n  \"description\": \"Created via Postman\",\r\n  \"imageUrl\": [],\r\n  \"beehiveId\":28 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/rooms",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete room",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "f.berti84@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/rooms/71",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"rooms",
+						"71"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update room details",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Módosított Szobanév\",\r\n  \"numberOfBeds\": 10,\r\n  \"pricePerNight\": 100000,\r\n  \"description\": \"Módosított leírás\",\r\n  \"imageUrl\": [],\r\n  \"beehiveId\": 28\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/rooms/{{RoomID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"rooms",
+						"{{RoomID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room detals",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "bertiteszt@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/rooms/{{RoomID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"rooms",
+						"{{RoomID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rooms of a beehive",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "bertiteszt@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/rooms/byBeehive/{{HiveID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"rooms",
+						"byBeehive",
+						"{{HiveID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "File upload to room",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "f.berti84@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Berti/Desktop/bee.webp"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/rooms/picture/{{RoomID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"rooms",
+						"picture",
+						"{{RoomID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Room details 2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "bertiteszt@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/rooms/roomDetails/{{RoomID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"rooms",
+						"roomDetails",
+						"{{RoomID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"Postman\",\r\n  \"lastName\": \"Pat\",\r\n  \"password\": \"PostmanPat123!\",\r\n  \"phoneNumber\": \"06705554433\",\r\n  \"email\": \"postmanpat@gmail.com\",\r\n  \"role\": \"ROLE_BEEKEEPER\",\r\n  \"zipcode\": 1222,\r\n  \"city\": \"Budapest\",\r\n  \"address\": \"Tél u. 2.\",\r\n  \"imageUrlOfProfile\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Image for profile",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/Berti/Desktop/postmanpat.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users/picture/postmanpat@gmail.com",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"picture",
+						"postmanpat@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Own details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users/me",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Own profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "bertiteszt@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "Test123!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users/myProfile",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"myProfile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users/logout",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
