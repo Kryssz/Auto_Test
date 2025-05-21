@@ -53,6 +53,7 @@ class TestLogin(object):
         assert self.login_page.message_error().is_displayed()
         assert self.login_page.message_error().text == 'Your username is invalid!'
 
+
     def test_negative_password(self):
         self.login_page.login('student', 'incorrectPassword')
         assert self.login_page.message_error().is_displayed()
