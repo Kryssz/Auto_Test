@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from Automated_tests.GeneralPage import GeneralPage
+from Selenium.BeeRelaxed.Automated_tests.GeneralPage import GeneralPage
 
 class LoginPage(GeneralPage):
     def __init__(self, driver=None):
