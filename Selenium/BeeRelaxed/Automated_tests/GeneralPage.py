@@ -1,4 +1,4 @@
-from Automated_tests.generate_browers import generate_chrome_driver
+from Selenium.BeeRelaxed.Automated_tests.generate_browers import generate_chrome_driver
 
 class GeneralPage(object):
     def __init__(self, url, driver=None):
