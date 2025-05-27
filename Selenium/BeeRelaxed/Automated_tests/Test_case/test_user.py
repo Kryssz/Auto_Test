@@ -1,5 +1,5 @@
-from Automated_tests.generate_browers import generate_chrome_driver
-from Automated_tests.BeeRelaxed.page_model_user import LoginPage
+from Selenium.BeeRelaxed.Automated_tests.generate_browers import generate_chrome_driver
+from Selenium.BeeRelaxed.Automated_tests.BeeRelaxed.page_model_user import LoginPage
 
 
 class TestPassword(object):
